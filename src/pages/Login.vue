@@ -13,20 +13,20 @@ const login = () => {
       router.push('/'); // redirect to the feed
     })
     .catch(error => {
-         switch (error.code) {          
-          case 'auth/invalid-email':              
-            errMsg.value = 'Invalid email'              
-            break          
-          case 'auth/user-not-found':              
-            errMsg.value = 'No account with that email was found'             
-            break          
-          case 'auth/wrong-password':              
-            errMsg.value = 'Incorrect password'              
-            break         
-          default:              
-            errMsg.value = 'Email or password was incorrect'              
-            break        
-        }
+      switch (error.code) {
+        case 'auth/invalid-email':
+          alert('Invalid email');
+          break;
+        case 'auth/user-not-found':
+          alert('No account with that email was found');
+          break;
+        case 'auth/wrong-password':
+          alert('Incorrect password');
+          break;
+        default:
+          alert('Email or password was incorrect');
+          break;
+      }
     });
 };
 </script>
@@ -123,7 +123,12 @@ const login = () => {
       >
         <span class="ml-2">
           You don't have an account?
-          <router-link to="/register" class="text-xs ml-2 text-blue-500 font-semibold"> Register </router-link>
+          <router-link
+            to="/register"
+            class="text-xs ml-2 text-blue-500 font-semibold"
+          >
+            Register
+          </router-link>
         </span>
       </a>
     </div>

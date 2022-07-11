@@ -1,24 +1,37 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { ref } from 'vue'; // used for conditional rendering
+import { useRouter } from 'vue-router';
+import { useTheme } from '/@/composables';
+import { auth } from '../firebase';
+const router = useRouter();
+const isLoggedIn = ref(true); // runs after firebase is initialized
+const { toggleDark } = useTheme();
 
-defineProps({
-  msg: {
-    type: String,
-    default: '',
-  },
+onAuthStateChanged(auth, user => {
+  if (user) {
+    isLoggedIn.value = true; // if we have a user
+  } else {
+    isLoggedIn.value = false; // if we do not
+  }
 });
 
-const { t } = useI18n();
+const logout = () => {
+  signOut(auth)
+    .then(() => {
+      router.push('/');
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
 </script>
 <template>
   <nav
-    class="flex items-center justify-between flex-wrap bg-gray-800 p-6 fixed w-full z-10 top-0"
+    class="flex items-center justify-between flex-wrap p-6 fixed w-full z-10 top-0"
   >
-    <div class="flex items-center flex-shrink-0 text-white mr-6">
-      <a
-        class="text-white no-underline hover:text-white hover:no-underline"
-        href="#"
-      >
+    <div class="flex items-center flex-shrink-0 mr-6">
+      <a href="/">
         <span class="text-2xl pl-2"
           ><i class="em em-grinning"></i> Areolung
         </span>
@@ -45,13 +58,35 @@ const { t } = useI18n();
     >
       <ul class="list-reset lg:flex justify-end flex-1 items-center">
         <li class="mr-3">
-          <router-link to="/Login" class="inline-block py-2 px-4 text-white no-underline"> Login </router-link>
+          <router-link
+            v-if="!isLoggedIn"
+            to="/login"
+            class="inline-block py-2 px-4"
+          >
+            Login
+          </router-link>
+          <button v-else @click="logout" class="inline-block py-2 px-4">
+            Logout
+          </button>
         </li>
         <li class="mr-3">
-          <router-link to="/Login" class="inline-block py-2 px-4 text-white no-underline"> Login </router-link>
+          <router-link to="/quiz" class="inline-block py-2 px-4">
+            Quiz
+          </router-link>
         </li>
         <li class="mr-3">
-          <router-link to="/Login" class="inline-block py-2 px-4 text-white no-underline"> Login </router-link>
+          <router-link to="/about" class="inline-block py-2 px-4">
+            About
+          </router-link>
+        </li>
+        <li>
+          <a
+            href="#"
+            @click="toggleDark()"
+            class="text-cyan-700 hover:text-cyan-500"
+          >
+            <i i="ph-sun dark:ph-moon" />
+          </a>
         </li>
       </ul>
     </div>

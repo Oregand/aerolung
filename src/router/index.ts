@@ -26,6 +26,10 @@ const routes = [
     component: () => import('/@/pages/Quiz.vue'),
   },
   {
+    path: '/about',
+    component: () => import('/@/pages/About.vue'),
+  },
+  {
     path: '/admin',
     component: () => import('/@/pages/Admin.vue'),
   },

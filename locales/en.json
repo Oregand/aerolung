@@ -2,7 +2,9 @@
   "hello": "Hello",
   "made_by": "Made by",
   "toggle_language": "Toggle Language",
+  "toggle_theme": "Toggle theme",
   "welcome": "there, welcome to Aerolung",
+  "if-using": "en caso de usar",
   "recomended-ide": "Recommended IDE setup",
   "See": "See",
   "more-info": "for more information."
