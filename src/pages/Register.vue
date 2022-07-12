@@ -19,9 +19,8 @@ const register = () => {
 };
 </script>
 <template>
-  <div
-    class="min-h-screen flex flex-col items-center justify-center bg-gray-100"
-  >
+  <Navbar />
+  <div class="min-h-screen flex flex-col items-center justify-center">
     <div
       class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl"
     >
@@ -48,7 +47,7 @@ const register = () => {
               <input
                 type="email"
                 name="email"
-                class="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                class="bg-white text-gray-500 text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                 placeholder="Enter your email"
                 v-model="email"
               />
@@ -72,7 +71,7 @@ const register = () => {
               <input
                 type="password"
                 name="password"
-                class="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                class="bg-white text-gray-500 text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                 placeholder="Enter your password"
                 v-model="password"
               />
@@ -106,16 +105,12 @@ const register = () => {
       </div>
     </div>
     <div class="flex justify-center items-center mt-6">
-      <a
-        href="#"
-        target="_blank"
-        class="inline-flex items-center text-gray-700 font-medium text-xs text-center"
-      >
-        <span class="ml-2">
-          Already have an account?
-          <router-link to="/login" class="text-xs ml-2 text-blue-500 font-semibold"> Login </router-link>
-        </span>
-      </a>
+      <span class="ml-2">
+        Already have an account?
+        <router-link to="/login" class="ml-2 text-blue-500 font-semibold">
+          Login
+        </router-link>
+      </span>
     </div>
   </div>
 </template>
